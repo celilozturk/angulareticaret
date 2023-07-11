@@ -9,6 +9,9 @@ app.use(cors());
 // app.get("",(req,res)=>{
 //     res.json({message: "Api istegi basrili sekilde calisiyor"})
 // })
+const authRouter= require("./routers/auth.router")
+app.use("/api/auth",authRouter);
+
 
 connection();
 
