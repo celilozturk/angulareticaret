@@ -1,0 +1,4 @@
+  npm i express mongoose uuid jsonwebtoken multer cors
+npm i -g nodemon
+
+nodemon index.js
