@@ -10,7 +10,9 @@ app.use(cors());
 //     res.json({message: "Api istegi basrili sekilde calisiyor"})
 // })
 const authRouter= require("./routers/auth.router")
+const categoryRouter=require("./routers/category.router");
 app.use("/api/auth",authRouter);
+app.use("/api/category",categoryRouter);
 
 
 connection();
