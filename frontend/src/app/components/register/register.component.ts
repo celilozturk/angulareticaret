@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { SharedModule } from 'src/app/common/shared/shared.module';
 
 @Component({
@@ -10,4 +11,7 @@ import { SharedModule } from 'src/app/common/shared/shared.module';
 })
 export class RegisterComponent {
 
+  register(form:NgForm){
+
+  }
 }

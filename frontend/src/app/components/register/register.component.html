@@ -1,1 +1,39 @@
-<p>register works!</p>
+<div class="d-flex justify-content-center" style="margin-top: 75px;">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">
+            <h1 class="text-center">Kayit Sayfasi</h1>
+        </div>
+        <div class="card-body">
+            <form autocomplete="off" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                <div class="form-group">
+                    <label for="name">Ad Soyad</label>
+                    <input type="text" class="form-control" ngModel name="name" id="name" #name [appValid]="name.validity.valid" required minlength="3">
+                </div>
+                <div class="invalid-feedback">
+                    Ad soyad alani en az 3 karakter olmalidir!
+                </div>
+                <div class="form-group mt-2">
+                    <label for="email">Mail Adresi</label>
+                    <input type="email" class="form-control" ngModel  name="email" id="email" #email [appValid]="email.validity.valid" required minlength="3">
+                </div>
+                <div class="invalid-feedback">
+                  Gecerli bir email adresi yazin!
+                </div>
+                <div class="form-group mt-2">
+                    <label for="password">Mail Adresi</label>
+                    <input type="password" class="form-control" ngModel name="password" id="password" #password [appValid]="password.validity.valid" required >
+                </div>
+                <div class="invalid-feedback">
+                  Password alani bos olamaz!
+                </div>
+
+                <div class="form-group mt-2">
+                    <button [disabled]="!registerForm.valid" class="btn btn-outline-success w-100">Kayit ol</button>
+                        <a routerLink="/login" style="float: right;">Giris Yap</a>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
