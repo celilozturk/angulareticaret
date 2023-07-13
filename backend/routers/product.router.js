@@ -106,4 +106,23 @@ router.post("/update",upload.array(images),async(req,res)=>{
         await Product.findByIdAndUpdate(_id,product);
         res.json({message:"Urun kaydi basariyla guncellendi!"});
     })
-})
+});
+
+//Urun resmi silme
+router.post("/removeImageByProductIdAndIndex",async(req,res)=>{
+    response(res,async()=>{
+        const {_id,index}=req.body;
+
+        let product=await Product.findById(_id);
+        if(product.imageUrls.length == 1){
+            res.status(500).json({message:"Son urun resmini silemezsiniz! En az 1 urun resmi olmak zaorundadair"})
+        }
+        else{
+            let image=product.imageUrls[index];
+            product.imageUrls.splice(index,1);
+            await Product.findByIdAndUpdate(_id,product);
+            fs.unlink(image.path,()=>{});
+            res.json({message:"Resim basariyla kaldirildi!"});
+        }
+    });
+});
