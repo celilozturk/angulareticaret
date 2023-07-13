@@ -4,7 +4,7 @@ const Product=require("../models/product");
 const {v4:uuidv4}=require("uuid");
 const fs=require("fs");
 const upload = require("../services/file.service");
-const response=require("../service/response.service");
+const response=require("../services/response.service");
 
 //Urun ekleme
 router.post("/add",upload.array("images"),async(req,res)=>{
