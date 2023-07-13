@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center" style="margin-top:25px">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="text-center">Giris Sayfasi</h1>
+            </div>
+            <div class="card-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="email" >Mail Adresi</label>
+                        <input type="email" ngModel name="email" id="email" required email>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="password">Sifre</label>
+                        <input type="password" ngModel name="password" id="password" required>
+
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-outline-primary w-100">Giris yap </button>
+                        <a routerLink="/register" style="float:right">Kayit ol</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
