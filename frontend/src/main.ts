@@ -9,6 +9,7 @@ import { ToastrModule } from "ngx-toastr";
 
 import { AppComponent } from "./app/app.component";
 import { routes } from "./app/router";
+import { NgxSpinnerModule } from "ngx-spinner";
 
   bootstrapApplication(AppComponent,{
     providers:[
@@ -18,6 +19,7 @@ import { routes } from "./app/router";
         CommonModule,
         RouterModule.forRoot(routes),
         BrowserAnimationsModule,
+        NgxSpinnerModule,
         ToastrModule.forRoot({
           closeButton:true,
           progressBar:true
