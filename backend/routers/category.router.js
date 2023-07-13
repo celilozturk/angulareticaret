@@ -1,25 +1,32 @@
 const express=require("express");
-const router=express.Router;
+const router=express.Router();
 const Category=require("../models/category");
 const {v4:uuidv4}=require("uuid");
 
 router.post("/add",async (req,res)=>{
     try{
         const {name}=req.body;
-        const category=new Category({
-            _id:uuidv4(),
-            name:name
-        });
+        const checkName=await Category.findOne({name:name});
+        if(checkName !=null){
+            res.status(403).json({message: "Bu kategori adi daha once kullanilmis!"})
+        }
+        else{
+            const category=new Category({
+                _id:uuidv4(),
+                name:name
+            });
 
-        await category.save();
-        res.json({message:"Kategory kaydi basariyla tammalandi"});
+            await category.save();
+            res.json({message:"Kategory kaydi basariyla tammalandi"});
+        }
+
     }
     catch(error){
         res.status(500).json({message:error.message});
     }
 })
 
-router.post("/removeById",async(res,res)=>{
+router.post("/removeById",async(req,res)=>{
     try{
         const {_id}=req.body;
 
@@ -32,7 +39,7 @@ router.post("/removeById",async(res,res)=>{
     }
 });
 
-router.post("/update",async(res,res)=>{
+router.post("/update",async(req,res)=>{
     try{
         const {_id,name}=req.body;
         const category=await Category.findOne({_id:id});
@@ -46,7 +53,7 @@ router.post("/update",async(res,res)=>{
     }
 });
 
-router.get("/getAll",async(res,res)=>{
+router.get("/",async(req,res)=>{
     try{
         const categories=await Category.find().sort({name:1});
 
