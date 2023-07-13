@@ -42,11 +42,20 @@ router.post("/removeById",async(req,res)=>{
 router.post("/update",async(req,res)=>{
     try{
         const {_id,name}=req.body;
-        const category=await Category.findOne({_id:id});
-        category.name=name;
-        await Category.findByIdAndUpdate(_id,category);
+        const category=await Category.findOne({_id:_id});
 
-        res.json({message:"Kategory kaydi basariyla guncellendi"});
+        if(category.name != name){
+            const checkName=await Category.findOne({name:name});
+            if(checkName !=null){
+                    res.status(403).json({message:"Bu kategori adi daha once kullanilmis"});
+            }
+            else{
+                category.name=name;
+                await Category.findByIdAndUpdate(_id,category);
+                res.json({message:"Kategory kaydi basariyla guncellendi"});
+            }
+        }
+
     }
     catch(error){
         res.status(500).json({message:error.message});
