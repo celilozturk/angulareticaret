@@ -14,6 +14,9 @@ export const routes:Routes=[
             {
                 path:"",
                 loadComponent:()=>import("./components/home/home.component").then(c=>c.HomeComponent)
+            },
+            {
+                path:"categories", loadComponent:()=>import("./components/categories/categories.component").then(c=>c.CategoriesComponent)
             }
         ]
     }
