@@ -126,3 +126,5 @@ router.post("/removeImageByProductIdAndIndex",async(req,res)=>{
         }
     });
 });
+
+module.exports=router;
