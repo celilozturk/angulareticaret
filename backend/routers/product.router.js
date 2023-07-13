@@ -76,6 +76,17 @@ router.post("/",async(req,res)=>{
     });
 });
 
+//Urunun Aktif/Pasif Durumunu Degistir
+router.post("/changeActiveStatus",async(req,res)=>{
+    response(res,async()=>{
+        const {_id} = req.body;
+        let product=await Product.findById(_id);
+        product.isActive= !product.isActive;
+        await Product.findByIdAndUpdate(_id,product);
+        res.json({message:"Urunun durumu basariyla degistirildi!"});
+    });
+});
+
 //Urunu id'ye gore getir
 router.post("/getById",async(req,res)=>{
     response(res,async()=>{
