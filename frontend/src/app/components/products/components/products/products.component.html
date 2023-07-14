@@ -28,13 +28,13 @@
         <td>{{product.price}}</td>
         <td>{{product.createdDate | date:'dd.MM.yyyy HH:mm:ssss'}}</td>
         <td>
-            <div class="form-check">
-                <input class="form-check-input" (change)="changeProductStatus(product._id)" type="checkbox" id="flexCheckChecked"  [value]="product.isActive">
+            <button class="btn" (click)="changeProductStatus(product._id)" [ngClass]="product.isActive ? 'btn-danger' : 'btn-primary'">
+                {{product.isActive?'Pasif Yap':'Aktif Yap'}}
+            </button>
 
-              </div>
         </td>
         <td>
-            <button class="btn btn-outline-warning btn-sm" title="Guncelle">
+            <button routerLink="/products/update/{{product._id}}" class="btn btn-outline-warning btn-sm" title="Guncelle">
                 <i class="fa fa-edit"></i>
             </button>
             <button (click)="removeById(product._id)" class="btn btn-outline-danger btn-sm mx-1" title="Sil">

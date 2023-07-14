@@ -61,7 +61,7 @@ changeProductStatus(id:string){
   let model={_id:id};
   this._product.changeActiveStatus(model,res=>{
     this.toastr.info(res.message);
-
+    this.getAll(this.request.pageNumber);
   });
 }
 }
