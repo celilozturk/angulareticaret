@@ -48,5 +48,14 @@ this.pageNumbers.push(i);
       this.getAll(1);
     }
   }
+  removeById(id:string){
+    this.swal.callSwal("Urunu silmek istiyor musunuz?","Urunu Sil","Sil",()=>{
+      let model={_id:id};
+      this._product.removeById(model,res=>{
+        this.toastr.info(res.message);
+        this.getAll(this.request.pageNumber);
+      })
+    })
+  }
 
 }
