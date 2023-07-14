@@ -3,5 +3,6 @@ export class RequestModel{
     pagesize:number=10;
     search:string="";
     categoryName:string="Tumu";
+    categoryId:string="";
     priceFilter:string="0";
 }
