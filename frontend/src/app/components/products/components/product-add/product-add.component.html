@@ -1,0 +1,46 @@
+<app-blank title="Urun Ekleme " sectionTitle="Urun Ekleme">
+    <div class="row center">
+        <div class="col-md-6">
+            <form #addForm="ngForm" (ngSubmit)="add(addForm)">
+                <div class="form-group">
+                    <label for="name">Urun Adi</label>
+                    <input type="text" name="name" id="name" ngModel required #name minlength="3" class="form-control" [appValid]="name.validity.valid">
+                    <div class="invalid-feedback">Urun adi en az 3 karakter olmalidir</div>
+                </div>
+                <div class="form-group">
+                    <label for="categories">Kategoriler</label>
+                    <select class="form-control" name="categoriesSelect" id="categoriesSelect" ngModel multiple #categoriesSelect>
+                        <option *ngFor="let category of categories" [value]="category._id">
+                            {{category.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="name">Urun Stok Adedi</label>
+                    <input type="number" name="stock" id="stock" ngModel required #stock min="1" class="form-control" [appValid]="stock.validity.valid">
+                    <div class="invalid-feedback">Urun stok adedi en az 1 olmalidir</div>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="price">Birim Fiyat</label>
+                    <input type="number" name="price" id="price" ngModel required #price min="1" class="form-control" [appValid]="price.validity.valid">
+                    <div class="invalid-feedback">Urun birim fiyati en az 1 olmalidir</div>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="images">Urun Resimleri</label>
+
+                    <input type="file" name="images" id="images" ngModel multiple  class="form-control" (change)="getImages($event)">
+                </div>
+                <hr>
+                <div class="form-group mt-2">
+                    <p>Secilen Resimler</p>
+                    <span (click)="removeImage(image.name,image.size,i)" *ngFor="let image of imageUrls let i=index">
+                        <img [src]="image.imageUrl" width="100" class="mx-1">
+                    </span>
+                </div>
+                <div class="form-group mt-2">
+                    <button class="btn btn-primary w-100">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</app-blank>
