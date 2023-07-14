@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-3" style="border:1px solid #ccc; padding:10px">
         <h3 class="alert alert-danger">Odenecek:{{sum}} ₺</h3>
-        <button *ngIf="baskets.length>0" class="btn btn-danger">Odeme Yap</button>
+        <button (click)="createOrder()" *ngIf="baskets.length>0" class="btn btn-danger">Odeme Yap</button>
     </div>
     </div>
 </app-blank>

@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/common/shared/shared.module';
 import { BasketService } from '../../services/basket.service';
 import { ToastrService } from 'ngx-toastr';
 import { SwalService } from 'src/app/common/shared/services/swal.service';
+import { OrderService } from 'src/app/components/orders/services/order.service';
 
 @Component({
   selector: 'app-baskets',
@@ -17,7 +18,7 @@ export class BasketsComponent implements OnInit {
 baskets:BasketModel[]=[];
 sum:number=0;
 
-constructor(private _basket:BasketService,private toastr:ToastrService,private _swal:SwalService){
+constructor(private _basket:BasketService,private toastr:ToastrService,private _swal:SwalService,private _order:OrderService){
 
 }
   ngOnInit(): void {
@@ -46,5 +47,12 @@ removeById(_id:string){
 
   })
 }
-
+createOrder(){
+  this._swal.callSwal("Urunleri almak istiyor musunuz?","Urunleri Al","Odeme Yap",()=>{
+      this._order.create(res=>{
+        this.toastr.success(res.message);
+        this.getAll();
+      });
+  });
+}
 }
