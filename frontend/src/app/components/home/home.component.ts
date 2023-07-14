@@ -6,6 +6,9 @@ import { CategoryModel } from '../categories/models/category.model';
 import { RequestModel } from 'src/app/common/models/request.mode';
 import { ProductService } from '../products/services/product.service';
 import { ProductModel } from '../products/models/product.model';
+import { BasketModel } from '../baskets/models/basket.model';
+import { BasketService } from '../baskets/services/basket.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +22,7 @@ categories:CategoryModel[]=[];
 request:RequestModel=new RequestModel();
 products:ProductModel[]=[];
 
-constructor(private _category:CategoryService,private _product:ProductService){
+constructor(private _category:CategoryService,private _product:ProductService,private _basket:BasketService,private toastr:ToastrService){
 
 }
   ngOnInit(): void {
@@ -36,5 +39,15 @@ changeCategory(categoryId:string, categoryName:string){
   this.request.categoryName=categoryName;
   this.request.categoryId=categoryId;
   this.getAll();
+}
+addBasket(productId:string,price:number){
+  let model=new BasketModel();
+  model.productId=productId;
+  model.price=price;
+  model.quantity=1;
+  this._basket.add(model,res=>{
+    this.toastr.success(res.message);
+    this.getAll();
+  })
 }
 }
